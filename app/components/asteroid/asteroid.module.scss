@@ -1,0 +1,62 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.date {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2rem;
+}
+.desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+.fq {
+  font-weight: 700;
+  text-decoration-line: underline;
+}
+.fqM {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.order {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.btn {
+  padding: 2px 11px;
+  height: 24px;
+  border-radius: 16px;
+  background-color: rgba(248, 102, 0, 0.15);
+  color: #f86600;
+  font-family: Helvetica, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: #fff;
+      background-color: #f86600;
+    }
+  }
+}
+.cart {
+  color: #f5ded9;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: #fff;
+      background-color: #f86600;
+    }
+  }
+}
