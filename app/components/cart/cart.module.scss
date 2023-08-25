@@ -1,0 +1,24 @@
+.cart {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 81px;
+  padding: 16px;
+  background-color: #232526;
+  display: flex;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: inherit;
+}
+.name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+.quant {
+  line-height: 1.5rem;
+}

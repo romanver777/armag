@@ -1,0 +1,30 @@
+.content {
+  position: relative;
+  left: 48px;
+  width: calc(100% - 48px);
+  padding: 17px 24px 0;
+}
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+}
+.switch {
+  line-height: 1.5rem;
+}
+.dist {
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+.active {
+  font-weight: 700;
+  text-decoration-line: none;
+}
+.astList {
+  padding-top: 24px;
+  margin-bottom: 81px;
+}
+.astItem {
+  list-style-type: none;
+  padding-bottom: 24px;
+}
