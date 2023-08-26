@@ -2,7 +2,14 @@
   position: relative;
   left: 48px;
   width: calc(100% - 48px);
+  max-width: 402px;
   padding: 17px 24px 0;
+
+  @media(min-width: 1025px){
+    left: 0;
+    padding: 9px 0 0;
+    width: 402px;
+  }
 }
 .title {
   font-size: 1.75rem;
@@ -23,6 +30,10 @@
 .astList {
   padding-top: 24px;
   margin-bottom: 81px;
+  
+  @media(min-width: 1025px){
+    margin-bottom: 0;
+  }
 }
 .astItem {
   list-style-type: none;

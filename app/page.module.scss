@@ -1,6 +1,45 @@
 .planeta {
   position: fixed;
-  left: -329px;
+  left: -256px;
   top: calc(50% - 15px);
   transform: translateY(-50%);
+  z-index: -1;
+  background-image: url("../public/style/img/planeta.webp");
+  width: 304px;
+  height: 436px;
+  
+  @media (min-resolution: 1.5dppx) {
+    background-image: url("/style/img/planeta-2x.webp");
+    background-size: 304px 436px;
+  }
+
+  @media (min-width: 1025px) {
+    top: 84px;
+    transform: translateX(-15px);
+    position: sticky;
+    float: left;
+  }
+
+  @media (min-width: 1356px) {
+    top: 108px;
+    transform: none;
+    background-image: url("/style/img/planeta-big.webp");
+    width: 400px;
+    height: 620px;
+  }
+  @media  (min-width: 1356px) and (min-resolution: 1.5dppx) {
+    background-image: url("/style/img/planeta-big-2x.webp");
+    background-size: 400px 620px;
+  }
+}
+.content {
+  display: flex;
+
+  @media (min-width: 1025px) {
+    margin-left: 362px;
+  }
+
+  @media (min-width: 1356px) {
+    margin-left: 527px;
+  }
 }
