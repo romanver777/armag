@@ -3,11 +3,17 @@ import { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 import useGetAsteroids from "../../hooks/useGetAsteroids";
 
+import { IAsteroid } from "../../types/t-asteroids";
 import Message from "../message/message";
 import Asteroid from "../asteroid/asteroid";
 import style from "./asteroids-list.module.scss";
 
-const AsteroidsList = () => {
+type TProps = {
+  cart: IAsteroid[] | null;
+  setToCart: (item: IAsteroid) => void;
+};
+
+const AsteroidsList = ({ cart, setToCart }: TProps) => {
   const [url, setUrl] = useState("");
   const [isKm, setKm] = useState(true);
   const { items, loading, error, nextUrl } = useGetAsteroids(url);
@@ -25,6 +31,8 @@ const AsteroidsList = () => {
 
     observer.observe(lastRef.current);
   }, [nextUrl]);
+
+  const isItemInCard = (item: IAsteroid, cart: IAsteroid[]) => cart.some((it) => it.id == item.id);
 
   return (
     <div className={style.content}>
@@ -57,13 +65,23 @@ const AsteroidsList = () => {
           if (ind === items.length - 1) {
             return (
               <li className={style.astItem} key={item.id} ref={lastRef}>
-                <Asteroid item={item} isKm={isKm} />
+                <Asteroid
+                  item={item}
+                  isKm={isKm}
+                  inCart={!!cart ? isItemInCard(item, cart) : false}
+                  onHandleClick={(item) => setToCart(item)}
+                />
               </li>
             );
           } else {
             return (
               <li className={style.astItem} key={item.id}>
-                <Asteroid item={item} isKm={isKm} />
+                <Asteroid
+                  item={item}
+                  isKm={isKm}
+                  inCart={!!cart ? isItemInCard(item, cart) : false}
+                  onHandleClick={(item) => setToCart(item)}
+                />
               </li>
             );
           }
