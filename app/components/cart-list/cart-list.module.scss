@@ -1,0 +1,24 @@
+.content{
+  margin-left: 72px;
+
+  @media (min-width: 1025px){
+    margin-left: 0;
+  }
+}
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+}
+.astList {
+  padding-top: 24px;
+  margin-bottom: 81px;
+
+  @media (min-width: 1025px) {
+    margin-bottom: 0;
+  }
+}
+.astItem {
+  list-style-type: none;
+  padding-bottom: 24px;
+}

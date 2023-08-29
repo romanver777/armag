@@ -1,7 +1,8 @@
-import style from "./header.module.scss";
-import { Passion_One } from "next/font/google";
+import Link from "next/link";
 import cn from "classnames";
 
+import { Passion_One } from "next/font/google";
+import style from "./header.module.scss";
 
 const passionOne = Passion_One({
   weight: "400",
@@ -13,7 +14,9 @@ const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.container}>
-        <div className={cn(style.title, passionOne.className)}>Armageddon 2023</div>
+        <Link href="/" className={cn(style.title, passionOne.className)}>
+          Armageddon 2023
+        </Link>
         <div className={style.desc}>
           <p>ООО “Команда им. Б. Уиллиса”.</p>
           <p>Взрываем астероиды с 1998 года.</p>

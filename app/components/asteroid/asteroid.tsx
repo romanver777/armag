@@ -12,13 +12,15 @@ import DangerIcon from "../../../public/style/icon/danger.svg";
 type TProps = {
   item: IAsteroid;
   isKm: boolean;
+  inCart?: boolean;
+  onHandleClick?: (item: IAsteroid) => void;
 };
 
 const getDate = (date: string) => {
   const data = new Date(date);
-  const monthName = data.toLocaleString('default', { month: 'short' });
-  
-  return `${data.getDate()} ${monthName.slice(0,-1)} ${data.getFullYear()}`;
+  const monthName = data.toLocaleString("default", { month: "short" });
+
+  return `${data.getDate()} ${monthName.slice(0, -1)} ${data.getFullYear()}`;
 };
 
 const getFormatKm = (km: string) => {
@@ -57,7 +59,11 @@ const getDiameter = (diam: number) => {
 
 const getName = (name: string) => name.split("(")[1].slice(0, -1);
 
-const Asteroid = ({ item, isKm }: TProps) => {
+const Asteroid = ({ item, isKm, inCart, onHandleClick }: TProps) => {
+  const handleClick = (item: IAsteroid) => {
+    if (onHandleClick !== undefined) onHandleClick(item);
+  };
+
   return (
     <div className={style.wrapper}>
       <div className={style.date}>
@@ -93,17 +99,31 @@ const Asteroid = ({ item, isKm }: TProps) => {
           </div>
         </div>
       </div>
-      <div className={style.order}>
-        <Button text="Заказать" className={style.btn} />
-        {/* <Button text="В корзине" className={cn(style.btn, style.cart)} /> */}
-        {item.is_potentially_hazardous_asteroid && (
-          <Image
-            src={DangerIcon}
-            className={style.dangerIcon}
-            alt="Danger icon"
-          />
-        )}
-      </div>
+      {inCart !== undefined && (
+        <div className={style.order}>
+          {inCart ? (
+            <Button
+              text="В корзине"
+              className={cn(style.btn, style.cart)}
+              onClick={() => handleClick(item)}
+            />
+          ) : (
+            <Button
+              text="Заказать"
+              className={style.btn}
+              onClick={() => handleClick(item)}
+            />
+          )}
+
+          {item.is_potentially_hazardous_asteroid && (
+            <Image
+              src={DangerIcon}
+              className={style.dangerIcon}
+              alt="Danger icon"
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

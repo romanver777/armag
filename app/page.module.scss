@@ -17,7 +17,6 @@
     top: 84px;
     transform: translateX(-15px);
     position: sticky;
-    float: left;
   }
 
   @media (min-width: 1356px) {
@@ -36,10 +35,10 @@
   display: flex;
 
   @media (min-width: 1025px) {
-    margin-left: 362px;
+    margin-left: 42px;
   }
 
   @media (min-width: 1356px) {
-    margin-left: 527px;
+    margin-left: 127px;
   }
 }
