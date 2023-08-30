@@ -34,6 +34,12 @@ const getDate = () => {
   return { startDate, endDate };
 };
 
+const getFormatUrl = (url: string) => {
+  const newUrl = url.split(":");
+
+  return `${newUrl[0]}s:${newUrl[1]}`;
+}
+
 const useGetAsteroids = (url: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,12 +62,12 @@ const useGetAsteroids = (url: string) => {
       const data = await res.json();
 
       setItems([...items, ...getFormatItems(data.near_earth_objects)]);
-      setNextUrl(data.links.next);
+      setNextUrl(getFormatUrl(data.links.next));
     } catch (error) {
       setError("Что-то пошло не так...");
     }
     setLoading(false);
-  }, []);
+  }, [url]);
 
   useEffect(() => {
     if (!loading) setLoading(true);
