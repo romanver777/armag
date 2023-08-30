@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { INearEarthObjects, IAsteroid } from "../types/t-asteroids";
 
 const getFormatItems = (items: INearEarthObjects) =>
@@ -40,11 +40,10 @@ const useGetAsteroids = (url: string) => {
   const [items, setItems] = useState<IAsteroid[]>([]);
   const [nextUrl, setNextUrl] = useState<string>("");
 
-  const getAsteroids = async (url: string) => {
+  const getAsteroids = useCallback( async (url: string) => {
     const { startDate, endDate } = getDate();
     const key = "DEMO_KEY";
-    const startUrl =
-      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${startDate}&api_key=${key}`;
+    const startUrl = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${startDate}&api_key=${key}`;
 
     try {
       const res = await fetch(`${!!url ? url : startUrl}`);
@@ -62,10 +61,10 @@ const useGetAsteroids = (url: string) => {
       setError("Что-то пошло не так...");
     }
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
-    if(!loading) setLoading(true);
+    if (!loading) setLoading(true);
     getAsteroids(url);
   }, [url]);
 

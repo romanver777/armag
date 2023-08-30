@@ -1,4 +1,3 @@
-import cn from "classnames";
 import style from "./button.module.scss";
 
 type TProps = {
@@ -11,7 +10,7 @@ type TProps = {
 const Button = ({ text, className, disabled, onClick }: TProps) => {
   return (
     <button
-      className={cn(style.btn, className)}
+      className={!!className ? className : style.btn}
       disabled={!!disabled}
       onClick={onClick}
     >

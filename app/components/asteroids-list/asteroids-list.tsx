@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 import useGetAsteroids from "../../hooks/useGetAsteroids";
+import { isItemInCard } from "@/app/utils/utils";
 
 import { IAsteroid } from "../../types/t-asteroids";
 import Message from "../message/message";
@@ -32,7 +33,7 @@ const AsteroidsList = ({ cart, setToCart }: TProps) => {
     observer.observe(lastRef.current);
   }, [nextUrl]);
 
-  const isItemInCard = (item: IAsteroid, cart: IAsteroid[]) => cart.some((it) => it.id == item.id);
+  
 
   return (
     <div className={style.content}>
