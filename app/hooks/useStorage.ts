@@ -7,8 +7,11 @@ const useStorage = () => {
   useEffect(() => {
     const stored = localStorage.getItem("cart");
     if (stored) setItems(JSON.parse(stored));
-    localStorage.removeItem("cart");
   }, []);
+
+  useEffect(() => {
+    if (items.length) localStorage.removeItem("cart");
+  }, [items]);
 
   return { items };
 };
