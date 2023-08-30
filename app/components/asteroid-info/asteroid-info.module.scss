@@ -1,0 +1,49 @@
+.content {
+  width: 402px;
+  margin-left: 72px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 0 16px 10px;
+}
+.astList {
+  list-style-type: none;
+}
+.astItem {
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background-color: #232526;
+  padding: 10px 16px;
+  margin-right: 48px;
+}
+.approach {
+  font-size: 0.875rem;
+  font-weight: normal;
+  line-height: 1.4rem;
+}
+.btn {
+  width: 200px;
+  padding: 2px 11px;
+  height: 24px;
+  border-radius: 16px;
+  background-color: rgba(248, 102, 0, 0.15);
+  color: #f86600;
+  font-family: Helvetica, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: #fff;
+      background-color: #f86600;
+    }
+  }
+}

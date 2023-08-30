@@ -1,13 +1,22 @@
 import Image from "next/image";
+import Link from "next/link";
 import cn from "classnames";
 
+import {
+  getDate,
+  getFormatKm,
+  getFormatLunar,
+  getDiameter,
+  getName,
+} from "../../utils/utils";
 import { IAsteroid } from "../../types/t-asteroids";
 import Button from "../button/button";
-import style from "./asteroid.module.scss";
 import ArrowIcon from "../../../public/style/icon/arrow.svg";
 import AsterImg from "../../../public/style/img/pngegg.png";
 import AsterBigImg from "../../../public/style/img/pngegg-big.png";
 import DangerIcon from "../../../public/style/icon/danger.svg";
+
+import style from "./asteroid.module.scss";
 
 type TProps = {
   item: IAsteroid;
@@ -15,49 +24,6 @@ type TProps = {
   inCart?: boolean;
   onHandleClick?: (item: IAsteroid) => void;
 };
-
-const getDate = (date: string) => {
-  const data = new Date(date);
-  const monthName = data.toLocaleString("default", { month: "short" });
-
-  return `${data.getDate()} ${monthName.slice(0, -1)} ${data.getFullYear()}`;
-};
-
-const getFormatKm = (km: string) => {
-  const arr: (number | string)[] = [];
-
-  Math.round(+km)
-    .toString()
-    .split("")
-    .reverse()
-    .forEach((el, i) => {
-      if (i !== 0 && i % 3 === 0) arr.push(" ");
-      arr.push(el);
-    });
-
-  return arr.reverse().join("") + " " + "км";
-};
-
-const getFormatLunar = (lun: string) => {
-  const num = Math.trunc(+lun);
-  const twoLast = num.toString().slice(-2);
-  const last = num.toString().slice(-1);
-  let str = "лунных орбит";
-
-  if (+last === 1) str = "лунная орбита";
-  if (+last >= 2 && +last <= 4) str = "лунные орбиты";
-  if (+twoLast >= 11 && +twoLast <= 14) str = "лунных орбит";
-
-  return `${num} ${str}`;
-};
-
-const getDiameter = (diam: number) => {
-  if (Math.trunc(diam).toString().length < 4) return `${Math.trunc(diam)} м`;
-
-  return `${(diam / 1000).toFixed(1)} км`;
-};
-
-const getName = (name: string) => name.split("(")[1].slice(0, -1);
 
 const Asteroid = ({ item, isKm, inCart, onHandleClick }: TProps) => {
   const handleClick = (item: IAsteroid) => {
@@ -92,7 +58,9 @@ const Asteroid = ({ item, isKm, inCart, onHandleClick }: TProps) => {
           )}
         </div>
         <div className={style.size}>
-          <div className={style.fq}>{getName(item.name)}</div>
+          <Link href={`/asteroid/${item.id}`} className={style.fq}>
+            {getName(item.name)}
+          </Link>
           <div className={style.fqM}>
             Ø{" "}
             {getDiameter(item.estimated_diameter.meters.estimated_diameter_max)}
@@ -114,7 +82,6 @@ const Asteroid = ({ item, isKm, inCart, onHandleClick }: TProps) => {
               onClick={() => handleClick(item)}
             />
           )}
-
           {item.is_potentially_hazardous_asteroid && (
             <Image
               src={DangerIcon}
