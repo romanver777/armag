@@ -2,11 +2,15 @@
 import useStorage from "@/app/hooks/useStorage";
 
 import { IAsteroid } from "../../types/t-asteroids";
+import Message from "../message/message";
 import Asteroid from "../asteroid/asteroid";
 import style from "./cart-list.module.scss";
 
 const CartList = () => {
-  const { items } = useStorage();
+  const { items, loading } = useStorage();
+
+  if (loading)
+    return <Message className={style.messWidth} text="Минуточку..." />;
 
   return (
     <>
